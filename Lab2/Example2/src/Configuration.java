@@ -41,9 +41,16 @@ public class Configuration {
         }
         return value;
     }
-    public static Configuration getInstance(){
+   public static Configuration getInstance(){
+
+
+        // the code is modified to a thread safe implementation to avoid race conditions
         if(instance == null)
-            instance = new Configuration();
+            synchronized (Configuration.class){
+            if(instance == null) {
+                instance = new Configuration();
+                }
+            }
         return instance;
     }
 }
