@@ -18,6 +18,9 @@ public abstract class AbstractLogger {
         if(this.level <= level ) {
             write(message);
         }
+        if(this.level == level) {
+            return;
+        }
         if(nextLogger != null) {
             nextLogger.logMessage(level , message);
         }
